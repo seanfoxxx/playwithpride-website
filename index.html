@@ -23,7 +23,7 @@
 
     header { position:sticky; top:0; z-index:100; background:rgba(255,255,255,.94); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
     nav { min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:25px; }
-    .brand { text-decoration:none; font-weight:900; font-size:1.35rem; letter-spacing:-.04em; }
+    .brand { text-decoration:none; font-weight:900; font-size:1.35rem; letter-spacing:-.04em; display: flex; align-items: center; }
     .brand span { color:var(--accent); }
     .navlinks { display:flex; gap:22px; align-items:center; }
     .navlinks a { text-decoration:none; font-weight:650; font-size:.94rem; transition: color 0.2s; }
@@ -61,9 +61,9 @@
     h2 { font-size:clamp(2.2rem,4vw,3.5rem); line-height:1; letter-spacing:-.05em; margin:0 0 15px; }
     .lead { color:var(--muted); font-size:1.1rem; }
     
-    /* GRADIENTS */
-    .soft { background: linear-gradient(180deg, #ffffff, var(--surface)); }
-    .soft-reverse { background: linear-gradient(180deg, #ffffff, #e8e8e8); }
+    /* LIGHT BLUE / PURPLE GRADIENTS */
+    .soft { background: linear-gradient(180deg, #ffffff 0%, #f4f7fe 45%, #faf5ff 100%); }
+    .soft-reverse { background: linear-gradient(180deg, #faf5ff 0%, #f4f7fe 55%, #ffffff 100%); }
 
     .values { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-top:35px; }
     .value { padding:18px 12px; text-align:center; border:1px solid var(--border); background:rgba(255,255,255,0.7); border-radius:16px; font-weight:800; }
@@ -91,7 +91,7 @@
     .mission p { font-size:clamp(1.5rem,3vw,2.4rem); line-height:1.15; font-weight:850; margin:0; }
 
     .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-    .stat { padding:30px 24px; border-radius:20px; background:#fff; border:1px solid var(--border); }
+    .stat { padding:30px 24px; border-radius:20px; background:rgba(255,255,255,0.85); border:1px solid var(--border); }
     .stat-number { font-size:3.2rem; font-weight:950; letter-spacing:-.06em; color: var(--accent); }
     .stat p { margin:8px 0; font-weight:750; }
     .stat small { color:var(--muted); }
@@ -102,8 +102,7 @@
     .event h3 { margin:0 0 5px; }
 
     .involve-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-    .involve { padding:28px; background:#fff; border:1px solid var(--border); border-radius:20px; text-decoration:none; color:inherit; display:block; transition: transform 0.2s; }
-    .involve:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .involve { padding:28px; background:rgba(255,255,255,0.9); border:1px solid var(--border); border-radius:20px; text-decoration:none; color:inherit; display:block; }
     .involve h3 { margin-top:0; }
 
     /* FAQ Styles */
@@ -158,7 +157,18 @@
 <header>
   <div class="container">
     <nav aria-label="Main navigation">
-      <a class="brand" href="#home" data-page="home">Play<span>With</span>Pride</a>
+      <a class="brand" href="#home" data-page="home">
+        <!-- Rainbow Logo SVG -->
+        <svg viewBox="0 0 130 65" width="32" height="16" style="margin-right: 8px;" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 5 65 A 60 60 0 0 1 125 65" fill="none" stroke="#E40303" stroke-width="10"/>
+          <path d="M 15 65 A 50 50 0 0 1 115 65" fill="none" stroke="#FF8C00" stroke-width="10"/>
+          <path d="M 25 65 A 40 40 0 0 1 105 65" fill="none" stroke="#FFED00" stroke-width="10"/>
+          <path d="M 35 65 A 30 30 0 0 1 95 65" fill="none" stroke="#008026" stroke-width="10"/>
+          <path d="M 45 65 A 20 20 0 0 1 85 65" fill="none" stroke="#004DFF" stroke-width="10"/>
+          <path d="M 55 65 A 10 10 0 0 1 75 65" fill="none" stroke="#750787" stroke-width="10"/>
+        </svg>
+        Play<span>With</span>Pride
+      </a>
       <div class="navlinks">
         <a href="#home" data-page="home">Home</a>
         <a href="#about" data-page="about">About Us</a>
@@ -226,8 +236,21 @@
       <div class="quote">Come as you are. Move at your own pace. Find your people.</div>
     </div>
   </section>
-
+  
   <section class="soft-reverse">
+    <div class="container">
+      <div class="section-head"><h2>By the Numbers</h2><p class="lead">The barriers are real. Research consistently shows that LGBTQ2S+ youth face significant barriers to sports participation, and that those barriers have real consequences for their health and wellbeing.</p></div>
+      <div class="stats">
+        <div class="stat"><div class="stat-number">68%</div><p>of LGBTQ+ youth report feeling unsafe in sports environments</p><small>GLSEN National School Climate Survey, 2021</small></div>
+        <div class="stat"><div class="stat-number">2×</div><p>more likely to be physically inactive compared to non-LGBTQ+ peers</p><small>Canadian Community Health Survey, 2019</small></div>
+        <div class="stat"><div class="stat-number">45%</div><p>have experienced harassment or discrimination in a sports setting</p><small>Athlete Ally, Out on the Fields Study, 2015</small></div>
+        <div class="stat"><div class="stat-number">3×</div><p>higher rates of depression and anxiety among LGBTQ+ youth who are excluded from sport</p><small>Journal of Adolescent Health, 2020</small></div>
+      </div>
+      <p class="quote" style="margin-top:45px">When queer youth have access to safe, welcoming sports spaces, the outcomes are transformative: improved mental health, stronger social connections, greater physical confidence, and a sense of belonging that extends far beyond the gym.</p>
+    </div>
+  </section>
+
+  <section class="soft">
     <div class="container-wide">
       <div class="section-head">
         <h2>Upcoming Sessions</h2>
@@ -243,7 +266,7 @@
 
 <!-- ABOUT -->
 <div id="about" class="page">
-  <section class="page-intro">
+  <section class="page-intro soft-reverse">
     <div class="container">
       <div class="eyebrow">Our story</div>
       <p class="lead">PlayWithPride was founded by a group of local Burnaby residents who remembered what it felt like to not see themselves in sport, to feel unwelcome in locker rooms, overlooked or judged by their peers, or simply too anxious to show up at all.</p>
@@ -277,24 +300,12 @@
       </div>
     </div>
   </section>
-  <section>
-    <div class="container">
-      <div class="section-head"><h2>By the Numbers</h2><p class="lead">The barriers are real. Research consistently shows that LGBTQ2S+ youth face significant barriers to sports participation, and that those barriers have real consequences for their health and wellbeing.</p></div>
-      <div class="stats">
-        <div class="stat"><div class="stat-number">68%</div><p>of LGBTQ+ youth report feeling unsafe in sports environments</p><small>GLSEN National School Climate Survey, 2021</small></div>
-        <div class="stat"><div class="stat-number">2×</div><p>more likely to be physically inactive compared to non-LGBTQ+ peers</p><small>Canadian Community Health Survey, 2019</small></div>
-        <div class="stat"><div class="stat-number">45%</div><p>have experienced harassment or discrimination in a sports setting</p><small>Athlete Ally, Out on the Fields Study, 2015</small></div>
-        <div class="stat"><div class="stat-number">3×</div><p>higher rates of depression and anxiety among LGBTQ+ youth who are excluded from sport</p><small>Journal of Adolescent Health, 2020</small></div>
-      </div>
-      <p class="quote" style="margin-top:45px">When queer youth have access to safe, welcoming sports spaces, the outcomes are transformative: improved mental health, stronger social connections, greater physical confidence, and a sense of belonging that extends far beyond the gym.</p>
-    </div>
-  </section>
-  <section class="soft"><div class="container mission"><p>Our mission is to create inclusive sporting spaces where queer youth can participate, connect, and thrive.</p></div></section>
+  <section><div class="container mission"><p>Our mission is to create inclusive sporting spaces where queer youth can participate, connect, and thrive.</p></div></section>
 </div>
 
 <!-- PAST EVENTS -->
 <div id="events" class="page">
-  <section class="page-intro">
+  <section class="page-intro soft-reverse">
     <div class="container">
       <div class="eyebrow">Community archive</div><h1>Past Events</h1>
       <p class="lead">A look back at some highlight PlayWithPride sessions and community moments.</p>
@@ -308,7 +319,7 @@
 
 <!-- REGISTRATIONS -->
 <div id="registrations" class="page">
-  <section class="page-intro">
+  <section class="page-intro soft-reverse">
     <div class="container">
       <div class="eyebrow">Upcoming registrations</div><h1>Get Moving. Meet Your People.</h1>
       <p class="lead">Every Tuesday • 6:30–7:30 PM. Choose a session below to register.</p>
@@ -363,14 +374,14 @@
   </section>
   <section class="soft">
     <div class="container involve-grid">
-      <a href="#volunteer-info" class="involve"><h3>Volunteer</h3><p>Volunteers power our programs and help us continue to provide weekly programs.</p></a>
-      <a href="#donate-info" class="involve"><h3>Donate</h3><p>Every dollar goes directly to keeping sessions free and accessible — covering gym time, equipment, and participant support.</p></a>
-      <a href="#spread-word-info" class="involve"><h3>Spread the word</h3><p>Share PlayWithPride with queer youth in your community. Word of mouth is how most participants find us.</p></a>
-      <a href="#partner-info" class="involve"><h3>Partner with us</h3><p>We're actively looking to partner with community centres, schools, and other organizations in and around Burnaby.</p></a>
+      <article class="involve"><h3>Volunteer</h3><p>Volunteers power our programs and help us continue to provide weekly programs.</p></article>
+      <article class="involve"><h3>Donate</h3><p>Every dollar goes directly to keeping sessions free and accessible — covering gym time, equipment, and participant support.</p></article>
+      <article class="involve"><h3>Spread the word</h3><p>Share PlayWithPride with queer youth in your community. Word of mouth is how most participants find us.</p></article>
+      <article class="involve"><h3>Partner with us</h3><p>We're actively looking to partner with community centres, schools, and other organizations in and around Burnaby.</p></article>
     </div>
   </section>
   <section id="volunteer-info">
-    <div class="container split">
+    <div class="container split" style="align-items: start;">
       <div><h2>Volunteer</h2><p class="lead">Show up and make a difference.</p><p>Our volunteers are the backbone of PlayWithPride. See what types of opportunities we're currently recruiting for.</p></div>
       <div class="event-list">
         <article class="involve" style="pointer-events: none;"><h3>Session facilitator</h3><p>Lead warm-ups, manage court rotations, and keep the energy positive at weekly sessions. No formal sports training required — just a commitment to creating a welcoming space.</p><a style="pointer-events: auto;" class="btn btn-outline" href="mailto:info@playwithpride.ca?subject=Volunteer%20-%20Session%20facilitator">Apply for this role</a></article>
@@ -380,7 +391,7 @@
   </section>
   
   <section id="partner-info" class="soft">
-    <div class="container split">
+    <div class="container split" style="align-items: start;">
       <div><h2>Partner With Us</h2><p class="lead">Collaborate for community impact.</p>
       <p>We're always looking to partner and expand our program to reach more queer youth and allies across Burnaby and around the lower mainland. If you're a community centre, school, or health organization, we'd love to talk about collaborations.</p>
       <a class="btn btn-primary" href="mailto:info@playwithpride.ca">Get in touch</a></div>
@@ -404,7 +415,21 @@
 
 <footer>
   <div class="container footer-grid">
-    <div><div class="brand">Play<span>With</span>Pride</div><p>Inclusive, low-pressure community sport for queer youth and allies in Burnaby.</p></div>
+    <div>
+      <div class="brand">
+        <!-- Rainbow Logo SVG -->
+        <svg viewBox="0 0 130 65" width="32" height="16" style="margin-right: 8px;" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 5 65 A 60 60 0 0 1 125 65" fill="none" stroke="#E40303" stroke-width="10"/>
+          <path d="M 15 65 A 50 50 0 0 1 115 65" fill="none" stroke="#FF8C00" stroke-width="10"/>
+          <path d="M 25 65 A 40 40 0 0 1 105 65" fill="none" stroke="#FFED00" stroke-width="10"/>
+          <path d="M 35 65 A 30 30 0 0 1 95 65" fill="none" stroke="#008026" stroke-width="10"/>
+          <path d="M 45 65 A 20 20 0 0 1 85 65" fill="none" stroke="#004DFF" stroke-width="10"/>
+          <path d="M 55 65 A 10 10 0 0 1 75 65" fill="none" stroke="#750787" stroke-width="10"/>
+        </svg>
+        Play<span>With</span>Pride
+      </div>
+      <p>Inclusive, low-pressure community sport for queer youth and allies in Burnaby.</p>
+    </div>
     <div><strong>Explore</strong><p><a href="#about" data-page="about">About Us</a></p><p><a href="#events" data-page="events">Past Events</a></p><p><a href="#registrations" data-page="registrations">Upcoming Registrations</a></p></div>
     <div><strong>Get involved</strong><p><a href="#involved" data-page="involved">Volunteer</a></p><p><a href="#involved" data-page="involved">Donate</a></p><p><a href="mailto:info@playwithpride.ca">Contact us</a></p></div>
   </div>
@@ -451,7 +476,7 @@ function renderSports(){
     const gap = parseFloat(getComputedStyle(track).gap);
     track.style.transform = `translateX(-${pos*(width+gap)}px)`;
   };
-  // Updated for infinite wrap-around
+  // Infinite wrap-around
   document.getElementById("sportPrev").onclick = () => { 
     const visible = innerWidth <= 600 ? 1 : innerWidth <= 950 ? 2 : 3;
     const max = Math.max(0, sports.length - visible);

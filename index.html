@@ -15,8 +15,9 @@
     html { scroll-behavior:smooth; }
     body { margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--ink); background:#fff; line-height:1.6; }
     a { color:inherit; }
-    img { max-width:100%; }
+    img { max-width:100%; border-radius: var(--radius); }
     .container { width:min(1180px, calc(100% - 40px)); margin:auto; }
+    .container-wide { width:min(1400px, calc(100% - 40px)); margin:auto; }
     .skip { position:absolute; left:-9999px; }
     .skip:focus { left:15px; top:15px; z-index:1000; background:#fff; padding:10px 15px; border-radius:8px; }
 
@@ -25,8 +26,12 @@
     .brand { text-decoration:none; font-weight:900; font-size:1.35rem; letter-spacing:-.04em; }
     .brand span { color:var(--accent); }
     .navlinks { display:flex; gap:22px; align-items:center; }
-    .navlinks a { text-decoration:none; font-weight:650; font-size:.94rem; }
+    .navlinks a { text-decoration:none; font-weight:650; font-size:.94rem; transition: color 0.2s; }
     .navlinks a:hover { color:var(--accent-dark); }
+    
+    /* ACTIVE PAGE INDICATOR */
+    .navlinks a.active:not(.btn) { color:var(--accent); font-weight:900; font-size:1.05rem; }
+    
     .menu { display:none; border:0; background:none; font-size:1.7rem; }
 
     .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:13px 20px; border-radius:999px; text-decoration:none; font-weight:800; border:2px solid transparent; cursor:pointer; }
@@ -35,35 +40,43 @@
     .btn-outline { border-color:var(--ink); background:#fff; }
     .btn-outline:hover { background:var(--ink); color:#fff; }
 
-    .hero { min-height:680px; display:grid; place-items:center; position:relative; overflow:hidden; background:
+    /* HERO STYLES */
+    .hero { min-height:680px; display:flex; align-items:center; justify-content:flex-start; position:relative; overflow:hidden; padding-left: 5%; background:
       linear-gradient(90deg, rgba(16,20,25,.82), rgba(16,20,25,.43), rgba(16,20,25,.18)),
       url("https://drive.google.com/thumbnail?id=1r7ilCss50oR_IpSEzBVCVCzLqkuuNVst&sz=w1600") center/cover; color:#fff; }
     .hero:after { content:""; position:absolute; inset:auto 0 0; height:7px; background:linear-gradient(90deg,#f28c28,#ffd447,#57bd78,#39a7db,#7656d8,#e95b77); }
-    .hero-content { padding:90px 0; max-width:780px; margin-right:auto; position:relative; z-index:1; }
+    .hero-content { max-width:780px; position:relative; z-index:1; text-align: left; }
     .eyebrow { text-transform:uppercase; letter-spacing:.15em; font-size:.8rem; font-weight:900; opacity:.9; }
     h1 { font-size:clamp(3rem,7vw,6.4rem); line-height:.95; letter-spacing:-.065em; margin:18px 0 25px; max-width:800px; }
     .hero p { font-size:clamp(1.1rem,2vw,1.35rem); max-width:680px; margin-bottom:30px; }
     .actions { display:flex; flex-wrap:wrap; gap:12px; }
+    
+    /* Hero Buttons */
+    .hero .btn-primary { border: 1px solid #fff; }
+    .hero .btn-outline { background: lightgray; color: var(--ink); border: 1px solid var(--ink); }
+    .hero .btn-outline:hover { background: #fff; }
 
     section { padding:90px 0; }
     .section-head { max-width:760px; margin-bottom:38px; }
     h2 { font-size:clamp(2.2rem,4vw,3.5rem); line-height:1; letter-spacing:-.05em; margin:0 0 15px; }
     .lead { color:var(--muted); font-size:1.1rem; }
-    .soft { background:var(--surface); }
+    
+    /* GRADIENTS */
+    .soft { background: linear-gradient(180deg, #ffffff, var(--surface)); }
+    .soft-reverse { background: linear-gradient(180deg, #ffffff, #e8e8e8); }
 
     .values { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-top:35px; }
-    .value { padding:18px 12px; text-align:center; border:1px solid var(--border); background:#fff; border-radius:16px; font-weight:800; }
+    .value { padding:18px 12px; text-align:center; border:1px solid var(--border); background:rgba(255,255,255,0.7); border-radius:16px; font-weight:800; }
 
     .carousel { position:relative; overflow:hidden; }
     .track { display:flex; gap:20px; transition:transform .45s ease; }
     .sport-card { flex:0 0 calc((100% - 40px)/3); aspect-ratio:4/3; position:relative; overflow:hidden; border-radius:18px; background:#ddd; }
-    .sport-card img { width:100%; height:100%; object-fit:cover; display:block; }
+    .sport-card img { width:100%; height:100%; object-fit:cover; display:block; border-radius: 0; }
     .sport-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:25px; text-align:center; color:#fff; background:rgba(25,25,25,.83); opacity:0; transition:.3s; }
     .sport-card:hover .sport-overlay, .sport-card:focus-within .sport-overlay { opacity:1; }
     .sport-overlay strong { display:block; font-size:1.25rem; margin-bottom:10px; }
     .arrow { position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:44px; height:44px; border:0; border-radius:50%; background:#fff; box-shadow:var(--shadow); font-size:1.6rem; cursor:pointer; }
     .prev { left:12px; } .next { right:12px; }
-    .arrow:disabled { opacity:.35; cursor:default; }
 
     .session-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
     .session { background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:25px; min-height:310px; display:flex; flex-direction:column; box-shadow:var(--shadow); }
@@ -79,18 +92,24 @@
 
     .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
     .stat { padding:30px 24px; border-radius:20px; background:#fff; border:1px solid var(--border); }
-    .stat-number { font-size:3.2rem; font-weight:950; letter-spacing:-.06em; }
+    .stat-number { font-size:3.2rem; font-weight:950; letter-spacing:-.06em; color: var(--accent); }
     .stat p { margin:8px 0; font-weight:750; }
     .stat small { color:var(--muted); }
 
     .event-list { display:grid; gap:16px; }
-    .event { display:grid; grid-template-columns:150px 1fr auto; gap:25px; align-items:center; padding:24px; border:1px solid var(--border); border-radius:18px; background:#fff; }
-    .event-date { font-weight:900; }
+    .event { display:grid; grid-template-columns:150px 1fr; gap:25px; align-items:center; padding:24px; border:1px solid var(--border); border-radius:18px; background:#fff; }
+    .event-date { font-weight:900; color: var(--accent); }
     .event h3 { margin:0 0 5px; }
 
     .involve-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-    .involve { padding:28px; background:#fff; border:1px solid var(--border); border-radius:20px; }
+    .involve { padding:28px; background:#fff; border:1px solid var(--border); border-radius:20px; text-decoration:none; color:inherit; display:block; transition: transform 0.2s; }
+    .involve:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
     .involve h3 { margin-top:0; }
+
+    /* FAQ Styles */
+    details { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+    summary { font-weight: 800; cursor: pointer; font-size: 1.1rem; }
+    details p { margin-top: 10px; color: var(--muted); }
 
     footer { background:#11171d; color:#fff; padding:60px 0 30px; }
     footer .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:35px; }
@@ -101,6 +120,15 @@
     .page { display:none; }
     .page.active { display:block; }
     .page-intro { padding:70px 0 30px; }
+    
+    /* Get Involved Header Background */
+    #involved .page-intro { 
+      background: linear-gradient(rgba(23, 32, 42, 0.7), rgba(23, 32, 42, 0.7)), url("https://drive.google.com/thumbnail?id=1jaYNrd6yEbuJkLXbsA54JB-IRj-RX9VQ&sz=w1600") center/cover; 
+      color: #fff;
+      padding: 100px 0 60px;
+    }
+    #involved .page-intro .lead { color: #f0f0f0; }
+
     .small-note { color:var(--muted); font-size:.9rem; }
 
     @media(max-width:950px) {
@@ -112,9 +140,9 @@
       .split { grid-template-columns:1fr; }
     }
     @media(max-width:600px) {
-      .container { width:min(100% - 28px,1180px); }
+      .container, .container-wide { width:min(100% - 28px,1180px); }
       section { padding:65px 0; }
-      .hero { min-height:610px; }
+      .hero { min-height:610px; padding-left: 5%; }
       .session-grid,.stats,.involve-grid { grid-template-columns:1fr; }
       .values { grid-template-columns:repeat(2,1fr); }
       .sport-card { flex-basis:100%; }
@@ -149,7 +177,7 @@
 <!-- HOME -->
 <div id="home" class="page active">
   <section class="hero">
-    <div class="container hero-content">
+    <div class="hero-content">
       <div class="eyebrow">Inclusive community sport • Burnaby, BC</div>
       <h1>Because Sports Should Be For Everyone.</h1>
       <p>Play With Pride creates welcoming, inclusive opportunities for queer youth and allies to participate in sports, build confidence, and find community.</p>
@@ -160,7 +188,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="soft-reverse">
     <div class="container">
       <div class="section-head">
         <h2>What We Do</h2>
@@ -174,7 +202,7 @@
   </section>
 
   <section class="soft">
-    <div class="container">
+    <div class="container-wide">
       <div class="section-head">
         <h2>Find the sport that's right for you.</h2>
         <p class="lead">No matter your experience level, there's a place for you here.</p>
@@ -193,14 +221,14 @@
         <h2>Why PlayWithPride?</h2>
         <p class="lead">Queer youth can face barriers to sports participation, including concerns about acceptance, discrimination, judgment, or simply not feeling like they belong.</p>
         <p>PlayWithPride exists to create spaces where participants can show up as themselves and enjoy sport alongside other queer youth and supportive community members.</p>
-        <a class="btn btn-outline" href="#about" data-page="about">Learn Why We Started</a>
+        <a class="btn btn-primary" href="#about" data-page="about">Learn Why We Started</a>
       </div>
       <div class="quote">Come as you are. Move at your own pace. Find your people.</div>
     </div>
   </section>
 
-  <section class="soft">
-    <div class="container">
+  <section class="soft-reverse">
+    <div class="container-wide">
       <div class="section-head">
         <h2>Upcoming Sessions</h2>
         <p class="lead">Every Tuesday, 6:30–7:30 PM.</p>
@@ -211,16 +239,6 @@
       </div>
     </div>
   </section>
-
-  <section>
-    <div class="container mission">
-      <h2>Want to help build a more inclusive sports community?</h2>
-      <div class="actions" style="margin-top:25px">
-        <a class="btn btn-primary" href="#involved" data-page="involved">Volunteer</a>
-        <a class="btn btn-outline" href="#involved" data-page="involved">Donate</a>
-      </div>
-    </div>
-  </section>
 </div>
 
 <!-- ABOUT -->
@@ -228,25 +246,35 @@
   <section class="page-intro">
     <div class="container">
       <div class="eyebrow">Our story</div>
-      <h1>Why We Founded PlayWithPride</h1>
       <p class="lead">PlayWithPride was founded by a group of local Burnaby residents who remembered what it felt like to not see themselves in sport, to feel unwelcome in locker rooms, overlooked or judged by their peers, or simply too anxious to show up at all.</p>
     </div>
   </section>
   <section>
     <div class="container split">
-      <div><h2>Our Focus</h2></div>
-      <div><p>We believe sports and exercise are an incredible asset to everyone, and we want to ensure the queer youth of today have not only the opportunity to engage in judgment-free sports, but also a safe and welcoming community where they can thrive.</p><p>We started small: a run-club event at Burnaby Lake, open to any queer youth or ally who wanted to come out. That first session had three participants. Today, we've expanded to providing 100+ young people with opportunities to try out basketball, tennis, badminton, run clubs, weight training, soccer, and more.</p></div>
+      <div>
+        <h2>Our Focus</h2>
+        <p>We believe sports and exercise are an incredible asset to everyone, and we want to ensure the queer youth of today have not only the opportunity to engage in judgment-free sports, but also a safe and welcoming community where they can thrive.</p>
+        <p>We started small: a run-club event at Burnaby Lake, open to any queer youth or ally who wanted to come out. That first session had three participants. Today, we've expanded to providing 100+ young people with opportunities to try out basketball, tennis, badminton, run clubs, weight training, soccer, and more.</p>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=11dPhla7RXtB3RpPE39CS3hJSfCAE3UdD&sz=w1000" alt="PlayWithPride Community">
+      </div>
     </div>
   </section>
   <section class="soft">
-    <div class="container">
-      <div class="section-head"><h2>Why Queer Youth &amp; Sport?</h2><p class="lead">Sport can support physical health, mental wellbeing, confidence and connection.</p></div>
-      <div class="values">
-        <div class="value">Physical health</div><div class="value">Mental wellbeing</div><div class="value">Confidence</div>
-        <div class="value">Social connection</div><div class="value">Leadership</div><div class="value">Teamwork</div>
-        <div class="value">Belonging</div><div class="value">Supportive friendships</div>
+    <div class="container split">
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1K9bCcBVc7c6fkOZCVOL3ba9ze4N4AHkc&sz=w1000" alt="PlayWithPride Sports">
       </div>
-      <p style="margin-top:30px">LGBTQ2S+ youth may encounter additional barriers to participating in sports, such as discrimination, bullying, fear of judgment, lack of representation, or feeling uncomfortable in traditional sporting environments.</p>
+      <div>
+        <div class="section-head"><h2>Why Queer Youth &amp; Sport?</h2><p class="lead">Sport can support physical health, mental wellbeing, confidence and connection.</p></div>
+        <div class="values" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="value">Physical health</div><div class="value">Mental wellbeing</div><div class="value">Confidence</div>
+          <div class="value">Social connection</div><div class="value">Leadership</div><div class="value">Teamwork</div>
+          <div class="value">Belonging</div><div class="value">Supportive friendships</div>
+        </div>
+        <p style="margin-top:30px">LGBTQ2S+ youth may encounter additional barriers to participating in sports, such as discrimination, bullying, fear of judgment, lack of representation, or feeling uncomfortable in traditional sporting environments.</p>
+      </div>
     </div>
   </section>
   <section>
@@ -269,11 +297,11 @@
   <section class="page-intro">
     <div class="container">
       <div class="eyebrow">Community archive</div><h1>Past Events</h1>
-      <p class="lead">A look back at PlayWithPride sessions and community moments from September 2024 through July 2026.</p>
+      <p class="lead">A look back at some highlight PlayWithPride sessions and community moments.</p>
       <a class="btn btn-primary" href="#registrations" data-page="registrations">Register for Our Next Session</a>
     </div>
   </section>
-  <section>
+  <section class="soft">
     <div class="container event-list" id="pastEvents"></div>
   </section>
 </div>
@@ -288,16 +316,39 @@
   </section>
   <section class="soft"><div class="container"><div class="session-grid" id="allSessions"></div></div></section>
   <section>
-    <div class="container">
-      <div class="section-head"><h2>Registration</h2><p class="lead">Only share information genuinely necessary to participate.</p></div>
-      <form onsubmit="event.preventDefault(); alert('Thanks! In a production site, this form would submit to your registration system.');" style="max-width:700px;display:grid;gap:16px">
-        <label>Name<input required name="name" style="display:block;width:100%;padding:14px;border:1px solid var(--border);border-radius:12px"></label>
-        <label>Email / contact information<input required type="email" name="email" style="display:block;width:100%;padding:14px;border:1px solid var(--border);border-radius:12px"></label>
-        <label>Which session are you registering for?<select name="session" style="display:block;width:100%;padding:14px;border:1px solid var(--border);border-radius:12px"><option>Basketball Drop-In</option><option>Tennis & Badminton</option><option>Run Club</option><option>Weight Training</option></select></label>
-        <label>Emergency contact information, if required<textarea name="emergency" rows="3" style="display:block;width:100%;padding:14px;border:1px solid var(--border);border-radius:12px"></textarea></label>
-        <label>Accessibility / accommodation needs<textarea name="accessibility" rows="3" style="display:block;width:100%;padding:14px;border:1px solid var(--border);border-radius:12px"></textarea></label>
-        <button class="btn btn-primary" type="submit">Submit Registration</button>
-      </form>
+    <div class="container split" style="align-items: start;">
+      <div>
+        <div class="section-head"><h2>Registration Form</h2><p class="lead">Click the button below to register via Google Forms.</p></div>
+        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeIhcBY7l8yv_0fcOCGlFTS3Sna6JMsKn0tqoTqRs2zE9dH0A/viewform?usp=header" target="_blank" rel="noopener" style="font-size: 1.1rem; padding: 15px 30px;">Open Registration Form</a>
+      </div>
+      <div>
+        <div class="section-head"><h2>Frequently Asked Questions</h2></div>
+        
+        <details>
+          <summary>Is there a cost to attend?</summary>
+          <p>Sessions are free or sliding scale. We never want cost to be a barrier to participation. If you're unsure, just register and send us a message at info@playwithpride.ca and we will try our best to accommodate you.</p>
+        </details>
+        
+        <details>
+          <summary>When do registrations open?</summary>
+          <p>Registrations generally open for the following month during the first week of every month. For example, in the first week of June, we will publish our July schedule!</p>
+        </details>
+        
+        <details>
+          <summary>Do I need experience in the sport?</summary>
+          <p>Absolutely not. All sessions are designed to be welcoming to complete beginners. Our volunteer facilitators are trained to support participants of all experience levels.</p>
+        </details>
+        
+        <details>
+          <summary>Who can attend PlayWithPride sessions?</summary>
+          <p>Sessions are open to LGBTQ2S+ youth and allies of all skill levels and backgrounds. For now, our programming is focused on addressing the barriers that are faced by youth and young adults in particular. If you are the parent/guardian of a youth who you think may benefit from our activity sessions, feel free to tag along! <br><br>If you're an adult, we encourage you to explore the recreational opportunities designed for adults through the City of Burnaby and City of Vancouver.</p>
+        </details>
+        
+        <details>
+          <summary>Why was my session cancelled?</summary>
+          <p>While cancellations are rare, we may occasionally need to cancel a session when registration is very low. To ensure each session is a meaningful and engaging experience for everyone, we generally require at least two registered participants to run a session.<br><br>If your session is cancelled, we’ll let you know as soon as possible and encourage you to join us at an upcoming session. We appreciate your understanding as we continue building our community!</p>
+        </details>
+      </div>
     </div>
   </section>
 </div>
@@ -306,33 +357,45 @@
 <div id="involved" class="page">
   <section class="page-intro">
     <div class="container">
-      <div class="eyebrow">Get involved</div><h1>Help us make sport safer and fun for queer youth.</h1>
+      <div class="eyebrow">Get involved</div><h2>Help us make sport safer and fun for queer youth.</h2>
       <p class="lead">PlayWithPride runs entirely on volunteer energy and community support. Whether you give your time, your skills, or a donation — you make it possible for us to continue providing these opportunities.</p>
     </div>
   </section>
   <section class="soft">
     <div class="container involve-grid">
-      <article class="involve"><h3>Volunteer</h3><p>Volunteers power our programs and help us continue to provide weekly programs.</p></article>
-      <article class="involve"><h3>Donate</h3><p>Every dollar goes directly to keeping sessions free and accessible — covering gym time, equipment, and participant support.</p></article>
-      <article class="involve"><h3>Spread the word</h3><p>Share PlayWithPride with queer youth in your community. Word of mouth is how most participants find us.</p></article>
-      <article class="involve"><h3>Partner with us</h3><p>We're actively looking to partner with community centres, schools, and other organizations in and around Burnaby.</p></article>
+      <a href="#volunteer-info" class="involve"><h3>Volunteer</h3><p>Volunteers power our programs and help us continue to provide weekly programs.</p></a>
+      <a href="#donate-info" class="involve"><h3>Donate</h3><p>Every dollar goes directly to keeping sessions free and accessible — covering gym time, equipment, and participant support.</p></a>
+      <a href="#spread-word-info" class="involve"><h3>Spread the word</h3><p>Share PlayWithPride with queer youth in your community. Word of mouth is how most participants find us.</p></a>
+      <a href="#partner-info" class="involve"><h3>Partner with us</h3><p>We're actively looking to partner with community centres, schools, and other organizations in and around Burnaby.</p></a>
     </div>
   </section>
-  <section>
+  <section id="volunteer-info">
     <div class="container split">
-      <div><h2>Volunteer</h2><p class="lead">Show up and make a difference.</p><p>Our volunteers are the backbone of PlayWithPride. See what types of opportunities we're currently recruiting for below.</p></div>
+      <div><h2>Volunteer</h2><p class="lead">Show up and make a difference.</p><p>Our volunteers are the backbone of PlayWithPride. See what types of opportunities we're currently recruiting for.</p></div>
       <div class="event-list">
-        <article class="involve"><h3>Session facilitator</h3><p>Lead warm-ups, manage court rotations, and keep the energy positive at weekly sessions. No formal sports training required — just a commitment to creating a welcoming space.</p><a class="btn btn-outline" href="mailto:hello@playwithpride.ca?subject=Volunteer%20-%20Session%20facilitator">Apply for this role</a></article>
-        <article class="involve"><h3>Communications &amp; social media</h3><p>We're looking to start our social media presence from scratch and need someone to help us build it. You'll create content, manage our channels, and help share our story.</p><a class="btn btn-outline" href="mailto:hello@playwithpride.ca?subject=Volunteer%20-%20Communications">Apply for this role</a></article>
+        <article class="involve" style="pointer-events: none;"><h3>Session facilitator</h3><p>Lead warm-ups, manage court rotations, and keep the energy positive at weekly sessions. No formal sports training required — just a commitment to creating a welcoming space.</p><a style="pointer-events: auto;" class="btn btn-outline" href="mailto:info@playwithpride.ca?subject=Volunteer%20-%20Session%20facilitator">Apply for this role</a></article>
+        <article class="involve" style="pointer-events: none;"><h3>Communications &amp; social media</h3><p>We're looking to start our social media presence from scratch and need someone to help us build it. You'll create content, manage our channels, and help share our story.</p><a style="pointer-events: auto;" class="btn btn-outline" href="mailto:info@playwithpride.ca?subject=Volunteer%20-%20Communications">Apply for this role</a></article>
       </div>
     </div>
   </section>
-  <section class="soft">
+  
+  <section id="partner-info" class="soft">
+    <div class="container split">
+      <div><h2>Partner With Us</h2><p class="lead">Collaborate for community impact.</p>
+      <p>We're always looking to partner and expand our program to reach more queer youth and allies across Burnaby and around the lower mainland. If you're a community centre, school, or health organization, we'd love to talk about collaborations.</p>
+      <a class="btn btn-primary" href="mailto:info@playwithpride.ca">Get in touch</a></div>
+      <div id="spread-word-info">
+         <h2>Spread The Word</h2><p class="lead">Be an advocate.</p>
+         <p>The best way to support us is to tell people about us. Forward our website to youth organizations, school counselors, or queer youth you know who might benefit from our programs.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="donate-info">
     <div class="container mission">
       <h2>Donate</h2><p>Every dollar keeps sessions free.</p>
       <p style="font-size:1.05rem;font-weight:500;margin-top:20px">PlayWithPride is committed to removing cost as a barrier to participation. Your donation covers gym rental, equipment, and participant support.</p>
       <a class="btn btn-primary" style="margin-top:20px" href="https://www.canadahelps.org/" target="_blank" rel="noopener">Donate via CanadaHelps</a>
-      <p class="small-note" style="margin-top:20px;color:#c6cdd3">PlayWithPride is a registered non-profit. Donations over $20 are eligible for a tax receipt.</p>
     </div>
   </section>
 </div>
@@ -343,13 +406,13 @@
   <div class="container footer-grid">
     <div><div class="brand">Play<span>With</span>Pride</div><p>Inclusive, low-pressure community sport for queer youth and allies in Burnaby.</p></div>
     <div><strong>Explore</strong><p><a href="#about" data-page="about">About Us</a></p><p><a href="#events" data-page="events">Past Events</a></p><p><a href="#registrations" data-page="registrations">Upcoming Registrations</a></p></div>
-    <div><strong>Get involved</strong><p><a href="#involved" data-page="involved">Volunteer</a></p><p><a href="#involved" data-page="involved">Donate</a></p><p><a href="mailto:hello@playwithpride.ca">Contact us</a></p></div>
+    <div><strong>Get involved</strong><p><a href="#involved" data-page="involved">Volunteer</a></p><p><a href="#involved" data-page="involved">Donate</a></p><p><a href="mailto:info@playwithpride.ca">Contact us</a></p></div>
   </div>
-  <div class="container footer-bottom">© 2026 PlayWithPride. Built for an inclusive sports community.</div>
+  <div class="container footer-bottom">© 2026 PlayWithPride. All Rights Reserved.</div>
 </footer>
 
 <script>
-const registrationUrl = "https://sites.google.com/d/1zz_B6VeJrUNyeMXco9CQb2Vp1Bl3s2hE/p/1fwyAofMIAFemioDdGgvUmf0EsEg8FZSU/edit";
+const registrationUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeIhcBY7l8yv_0fcOCGlFTS3Sna6JMsKn0tqoTqRs2zE9dH0A/viewform?usp=header";
 
 const sports = [
   ["Run-clubs","https://drive.google.com/thumbnail?id=1NYKXAGbRjIhfj1OPoOY-93AeGxWOIIPt&sz=w1000","Social running and jogging opportunities where participants can be active together. Varying distances and paces ensure participants of all experience levels can fit in."],
@@ -369,19 +432,10 @@ const sessions = [
 ];
 
 const pastEvents = [
-  ["July 2026","Soccer","Burnaby","A relaxed recreational soccer night with lots of movement, laughs, and new connections."],
-  ["June 2026","Disc Golf","Burnaby","An easygoing outdoor session that brought participants together for fresh air and friendly play."],
-  ["May 2026","Basketball Drop-In","Burnaby","A welcoming drop-in with mixed experience levels and plenty of time to play and connect."],
-  ["April 2026","Tennis & Badminton","Burnaby","Casual racquet sports, new skills, and a supportive community atmosphere."],
-  ["March 2026","Weight Training","Burnaby","An introductory strength session focused on form, confidence, and learning together."],
-  ["January 2026","Run Club","Burnaby Lake","A social run with flexible pacing so everyone could participate comfortably."],
-  ["November 2025","Spikeball","Burnaby","A playful park session built around movement, teamwork, and fun."],
-  ["September 2025","Basketball Drop-In","Burnaby","An energetic community night welcoming both first-time and returning players."],
-  ["July 2025","Tennis & Badminton","Burnaby","A relaxed evening of racquet sports with a mix of games and practice."],
-  ["May 2025","Run Club","Burnaby Lake","A low-pressure run club focused on community rather than competition."],
-  ["February 2025","Weight Training","Burnaby","Participants learned foundational exercises and practiced safe lifting techniques."],
-  ["December 2024","Basketball Drop-In","Burnaby","A year-end drop-in centered on fun, movement, and meeting new people."],
-  ["September 2024","Run Club","Burnaby Lake","The first PlayWithPride session: three participants showing up for community and a shared run."]
+  ["September 2, 2026","Back on the court for September — and what a session.","We kicked off September with one of our biggest basketball drop-ins yet. The energy was electric from the first whistle. We ran three rotating courts, mixing experience levels throughout the evening so everyone got to play with and against a range of people. By the end, new friendships were forming and several participants were already asking about the next session."],
+  ["June 26, 2026","A perfect August evening for a community run.","Nine participants joined us for our last run club session of June, looping through the neighbourhood trails near Burnaby Mountain. We ran in small pace groups so nobody felt left behind — from walkers to seasoned runners, everyone found their rhythm. There's something about moving your body together that makes conversation flow."],
+  ["November 4, 2025","Strength, confidence, and community in the weight room.","Our November weight training session welcomed six participants to an introductory strength session led by two of our trained volunteer facilitators. The focus was on building confidence with basic movements — squats, deadlifts, and upper-body work — at the Christine Sinclair community centre. Several participants shared that they'd always felt intimidated by traditional gym environments and that this session was the first time they'd felt genuinely comfortable lifting weights. That feedback means everything to us. We'll be running regular weight training sessions through the winter."],
+  ["August 27, 2024","August's final run club: heat, hills, and good company.","Because of the August heat, we adjusted the route to take advantage of shaded trails and kept the pace relaxed. Everyone finished, everyone had fun, and the post-run popsicles were a unanimous hit. A huge thank you to our volunteer run leaders who kept the energy high throughout."]
 ];
 
 function renderSports(){
@@ -396,45 +450,68 @@ function renderSports(){
     const width = cards[0].getBoundingClientRect().width;
     const gap = parseFloat(getComputedStyle(track).gap);
     track.style.transform = `translateX(-${pos*(width+gap)}px)`;
-    document.getElementById("sportPrev").disabled = pos===0;
-    document.getElementById("sportNext").disabled = pos===max;
   };
-  document.getElementById("sportPrev").onclick = () => { pos--; update(); };
-  document.getElementById("sportNext").onclick = () => { pos++; update(); };
+  // Updated for infinite wrap-around
+  document.getElementById("sportPrev").onclick = () => { 
+    const visible = innerWidth <= 600 ? 1 : innerWidth <= 950 ? 2 : 3;
+    const max = Math.max(0, sports.length - visible);
+    pos = pos === 0 ? max : pos - 1; 
+    update(); 
+  };
+  document.getElementById("sportNext").onclick = () => { 
+    const visible = innerWidth <= 600 ? 1 : innerWidth <= 950 ? 2 : 3;
+    const max = Math.max(0, sports.length - visible);
+    pos = pos === max ? 0 : pos + 1; 
+    update(); 
+  };
   addEventListener("resize", update); update();
 }
 
-function sessionCard(s){
+function sessionCard(s, redirect){
   return `<article class="session">
     <h3>${s[0]}</h3>
     <p class="meta"><b>📅</b> ${s[1]}</p>
     <p class="meta"><b>🕐</b> ${s[2]}</p>
     <p class="meta"><b>📍</b> ${s[3]}</p>
     <p class="small-note">All experience levels welcome. Inclusive, low-pressure recreational sport.</p>
-    <a class="btn btn-primary" href="${registrationUrl}" target="_blank" rel="noopener">Register</a>
+    ${redirect ? 
+      `<a class="btn btn-primary" href="#registrations" data-page="registrations">Register</a>` :
+      `<a class="btn btn-primary" href="${registrationUrl}" target="_blank" rel="noopener">Register</a>`
+    }
   </article>`;
 }
-document.getElementById("homeSessions").innerHTML = sessions.map(sessionCard).join("");
-document.getElementById("allSessions").innerHTML = sessions.map(sessionCard).join("");
+
+// Home sessions redirect to registration page, allSessions go to form
+document.getElementById("homeSessions").innerHTML = sessions.map(s => sessionCard(s, true)).join("");
+document.getElementById("allSessions").innerHTML = sessions.map(s => sessionCard(s, false)).join("");
 
 document.getElementById("pastEvents").innerHTML = pastEvents.map(e => `<article class="event">
   <div class="event-date">${e[0]}</div>
-  <div><h3>${e[1]}</h3><div class="small-note">📍 ${e[2]}</div><p>${e[3]}</p></div>
-  <span class="small-note">Community archive</span>
+  <div><h3>${e[1]}</h3><p>${e[2]}</p></div>
 </article>`).join("");
 
 function showPage(id){
   document.querySelectorAll(".page").forEach(p => p.classList.toggle("active", p.id===id));
-  document.querySelectorAll("[data-page]").forEach(a => a.classList.toggle("active", a.dataset.page===id));
+  document.querySelectorAll(".navlinks a").forEach(a => {
+      if(a.dataset.page) {
+          a.classList.toggle("active", a.dataset.page===id);
+      }
+  });
   window.scrollTo({top:0,behavior:"smooth"});
 }
+
 document.addEventListener("click", e => {
   const link = e.target.closest("[data-page]");
   if(!link) return;
+  
+  // Exclude external links if any sneaked in
+  if(link.getAttribute('target') === '_blank') return;
+  
   e.preventDefault();
   showPage(link.dataset.page);
   history.pushState({}, "", "#"+link.dataset.page);
 });
+
 addEventListener("popstate",()=>showPage(location.hash.slice(1)||"home"));
 addEventListener("load",()=>{
   renderSports();

@@ -113,15 +113,20 @@
 
     /* PAST EVENTS CARDS */
     .event-list { display:grid; gap:40px; }
-    .event-card { display: flex; flex-direction: column; gap: 15px; }
+    .event-card { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: #fff; padding: 35px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .event-content { display: flex; flex-direction: column; gap: 15px; }
     .event-date { font-weight: 900; color: var(--accent); font-size: 1.3rem; }
-    .event-image-container { position: relative; width: 100%; height: 450px; border-radius: var(--radius); overflow: hidden; background: #ddd; box-shadow: var(--shadow); }
-    .event-image-container img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0; transition: transform 0.4s ease; }
-    .event-overlay { position: absolute; inset: 0; background: rgba(23, 32, 42, 0.85); color: #fff; opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; padding: 40px; text-align: center; }
-    .event-image-container:hover .event-overlay, .event-image-container:focus-within .event-overlay { opacity: 1; }
+    .event-content h3 { font-size: 2rem; margin: 0; line-height: 1.2; }
+    .event-content p { color: var(--muted); font-size: 1.1rem; margin: 0; }
+    .event-image-container { position: relative; width: 100%; height: 350px; border-radius: 14px; overflow: hidden; background: #ddd; }
+    .event-image-container img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
     .event-image-container:hover img { transform: scale(1.03); }
-    .event-overlay h3 { margin: 0 0 15px; font-size: 2rem; color: #fff; line-height: 1.1; }
-    .event-overlay p { font-size: 1.1rem; max-width: 800px; margin: 0 auto; color: #f0f0f0; }
+
+    /* ABOUT US TEAM */
+    .team-grid { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    .team-member { text-align: center; }
+    .team-member img { width: 220px; height: 220px; object-fit: cover; border-radius: var(--radius); border: 3px solid #e0e0e0; margin-bottom: 15px; box-shadow: var(--shadow); }
+    .team-member h3 { margin: 0; font-size: 1.4rem; }
 
     .involve-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
     .involve { padding:28px; background:rgba(255,255,255,0.9); border:1px solid var(--border); border-radius:20px; text-decoration:none; color:inherit; display:block; }
@@ -159,6 +164,8 @@
       .values { grid-template-columns:repeat(3,1fr); }
       .sport-card { flex-basis:calc((100% - 20px)/2); }
       .split { grid-template-columns:1fr; }
+      .event-card { grid-template-columns: 1fr; gap: 25px; }
+      .event-image-container { height: 250px; }
     }
     @media(max-width:600px) {
       .container, .container-wide { width:min(100% - 28px,1180px); }
@@ -167,9 +174,6 @@
       .session-grid,.stats,.involve-grid { grid-template-columns:1fr; }
       .values { grid-template-columns:repeat(2,1fr); }
       .sport-card { flex-basis:100%; }
-      .event-image-container { height: 300px; }
-      .event-overlay { padding: 20px; }
-      .event-overlay h3 { font-size: 1.4rem; }
       .actions .btn { width:100%; }
       footer .footer-grid { grid-template-columns:1fr; }
     }
@@ -239,7 +243,6 @@
     </div>
   </section>
 
-  <!-- BACKGROUND IMAGE ADJUSTED: Less faded (0.75 opacity overlay) -->
   <section style="background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url('https://drive.google.com/thumbnail?id=10KUOijLvgyBJ83O983R6ifHfOSAYtVZI&sz=w1600') center/cover;">
     <div class="container-wide reveal fade-left">
       <div class="section-head" style="max-width: 900px;">
@@ -252,7 +255,6 @@
   </section>
   
   <section class="soft-reverse">
-    <!-- ALIGNED WITH WIDE CONTAINER & QUOTE REMOVED -->
     <div class="container-wide">
       <div class="section-head reveal fade-right"><h2>By the Numbers</h2><p class="lead">The barriers are real. Research consistently shows that LGBTQ2S+ youth face significant barriers to sports participation, and that those barriers have real consequences for their health and wellbeing.</p></div>
       <div class="stats reveal fade-up">
@@ -302,6 +304,26 @@ Our mission is to create inclusive sporting spaces where queer youth can partici
       </div>
     </div>
   </section>
+  
+  <section>
+    <div class="container reveal fade-up">
+      <div class="section-head" style="text-align: center; margin: 0 auto 30px;">
+        <h2>Meet the Co-Founders</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="https://drive.google.com/thumbnail?id=1apYQotrgNlS3pSLcDK74UCAXK7IqrItp&sz=w800" alt="Co-Founder: Sean">
+          <h3>Sean</h3>
+          <p class="muted" style="margin: 5px 0 0;">Co-Founder</p>
+        </div>
+        <div class="team-member">
+          <img src="https://drive.google.com/thumbnail?id=1HID20EoUAgcYpVLCTl4lXt-I9SwrySJ-&sz=w800" alt="Co-Founder: Michelle">
+          <h3>Michelle</h3>
+          <p class="muted" style="margin: 5px 0 0;">Co-Founder</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- PAST EVENTS -->
@@ -320,10 +342,10 @@ Our mission is to create inclusive sporting spaces where queer youth can partici
 
 <!-- REGISTRATIONS -->
 <div id="registrations" class="page">
-  <!-- START GRADIENT: Purple down to white -->
   <section class="page-intro" style="background: linear-gradient(180deg, #e6d4fa 0%, #ffffff 100%);">
     <div class="container reveal fade-left">
-      <p class="lead">Choose a session below to register.</p>
+      <strong style="font-size: 1.1rem; display: block; margin-bottom: 5px;">UPCOMING REGISTRATIONS</strong>
+      <p class="lead" style="margin-top: 0;">Choose a session below to register.</p>
     </div>
   </section>
   
@@ -331,7 +353,6 @@ Our mission is to create inclusive sporting spaces where queer youth can partici
     <div class="container"><div class="session-grid reveal fade-up" id="allSessions"></div></div>
   </section>
   
-  <!-- END GRADIENT: White down to purple -->
   <section style="background: linear-gradient(180deg, #ffffff 0%, #e6d4fa 100%);">
     <div class="container split" style="align-items: start;">
       <div class="reveal fade-right">
@@ -379,7 +400,6 @@ Our mission is to create inclusive sporting spaces where queer youth can partici
     </div>
   </section>
   
-  <!-- GET INVOLVED SECTIONS WITH CONTINUOUS GRADIENTS -->
   <section style="background: #ffffff;">
     <div class="container involve-grid reveal fade-up">
       <article class="involve"><h3>Volunteer</h3><p>Volunteers power our programs and help us continue to provide weekly programs.</p></article>
@@ -389,7 +409,6 @@ Our mission is to create inclusive sporting spaces where queer youth can partici
     </div>
   </section>
   
-  <!-- White to Purple -->
   <section id="volunteer-info" style="background: linear-gradient(180deg, #ffffff 0%, #e6d4fa 100%);">
     <div class="container split" style="align-items: start;">
       <div class="reveal fade-right"><h2>Volunteer</h2><p class="lead">Show up and make a difference.</p><p>Our volunteers are the backbone of PlayWithPride. See what types of opportunities we're currently recruiting for.</p></div>
@@ -400,7 +419,6 @@ Our mission is to create inclusive sporting spaces where queer youth can partici
     </div>
   </section>
   
-  <!-- Purple to Light Blue -->
   <section id="partner-info" style="background: linear-gradient(180deg, #e6d4fa 0%, #e3f2fd 100%);">
     <div class="container split" style="align-items: start;">
       <div class="reveal fade-right"><h2>Partner With Us</h2><p class="lead">Collaborate for community impact.</p>
@@ -413,7 +431,6 @@ Our mission is to create inclusive sporting spaces where queer youth can partici
     </div>
   </section>
   
-  <!-- Solid Light Blue matching the gradient end, with darker blue mission bubble -->
   <section id="donate-info" style="background: #e3f2fd;">
     <div class="container mission reveal fade-up" style="background: #81d4fa; color: var(--ink);">
       <h2>Donate</h2><p>Every dollar keeps sessions free.</p>
@@ -463,7 +480,7 @@ const sessions = [
   ["Drop-In Basketball","Tuesday, October 27, 2026","6:30–7:30 PM","Gilpin School Park, Burnaby", "Free"]
 ];
 
-// Updated Past Events Array with Background Images
+// Updated Past Events Array
 const pastEvents = [
   ["September 2, 2026", "Back on the pitch for September — and what a session.", "We kicked off September with one of our biggest drop-ins yet. The energy was electric right from the get-go! We ran drop-in California Kick-ball, mixing experience levels throughout the evening so everyone got to play with and against a range of people. By the end, new friendships were forming and several participants were already asking about the next session.", "https://drive.google.com/thumbnail?id=1-3rFhWP509_ITc0V6pykrjm1r0JTYISQ&sz=w1000"],
   ["June 26, 2026", "A perfect August evening for a community run.", "Nine participants joined us for our last run club session of June, looping through the neighbourhood trails near Burnaby Mountain. We ran in small pace groups so nobody felt left behind — from walkers to seasoned runners, everyone found their rhythm. There's something about moving your body together that makes conversation flow.", "https://drive.google.com/thumbnail?id=1tvfr7z_5GKN1fznrkPiANK5N-AJXQSZY&sz=w1000"],
@@ -519,18 +536,16 @@ function sessionCard(s, redirect){
 document.getElementById("homeSessions").innerHTML = sessions.slice(0, 4).map(s => sessionCard(s, true)).join("");
 document.getElementById("allSessions").innerHTML = sessions.map(s => sessionCard(s, false)).join("");
 
-// Render updated Past Events Grid
+// Render updated Past Events Grid Side-By-Side Layout
 document.getElementById("pastEvents").innerHTML = pastEvents.map(e => `
   <article class="event-card reveal fade-up">
-    <div class="event-date">${e[0]}</div>
+    <div class="event-content">
+      <div class="event-date">${e[0]}</div>
+      <h3>${e[1]}</h3>
+      <p>${e[2]}</p>
+    </div>
     <div class="event-image-container">
       <img src="${e[3]}" alt="${e[1]}">
-      <div class="event-overlay">
-        <div>
-          <h3>${e[1]}</h3>
-          <p>${e[2]}</p>
-        </div>
-      </div>
     </div>
   </article>
 `).join("");
